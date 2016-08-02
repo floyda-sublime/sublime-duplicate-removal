@@ -58,11 +58,14 @@ class DuplicateRemovalCommand(sublime_plugin.TextCommand):
             result += line + "\n"
 
         # insert matched lines to contents
-        result += "\n"
-        result += "matched lines:\n"
-        
-        for line in same_lines:
-            result += line + "\n"
+        if len(same_lines) > 0:
+            result += "\n"
+            result += "-" * 60 + "\n"
+            result += "The Same Lines:\n"
+            result += "-" * 60 + "\n"
+
+            for line in same_lines:
+                result += line + "\n"
 
         # replace contents to current file.
         self.view.replace(edit, region, result)
