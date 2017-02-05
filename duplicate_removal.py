@@ -63,7 +63,8 @@ class DuplicateRemovalCommand(sublime_plugin.TextCommand):
         result = ""
         result = add_comment(result, "The Diff Lines")
         for line in contents:
-            result += line + "\n"
+            if line not in same_lines:
+                result += line + "\n"
 
         jump_point = len(result)
 
